@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uncover Your Why Through Your Story</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* --- General & Body Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.7; /* Increased for readability */
+            color: #333;
+            background-color: #f4f7f6; /* Softer background color */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Softer shadow */
+        }
+
+        /* --- Scarcity & Timer --- */
+        .scarcity-bar {
+            position: sticky; /* Changed to sticky for better user experience */
+            top: 0;
+            background: linear-gradient(90deg, #d32f2f, #c62828); /* Darker, more serious red */
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            font-weight: bold;
+            z-index: 1000;
+            font-size: 16px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .timer {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            margin: 5px 0;
+            letter-spacing: 2px;
+        }
+
+        /* --- Header & Typography --- */
+        .header {
+            text-align: center;
+            margin-top: 80px; /* Adjusted for sticky bar */
+            padding: 40px 20px;
+            background: #fff;
+            color: #333;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #ff6b6b;
+        }
+
+        .warning-badge {
+            background: #ff4757;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .header p {
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.2em;
+            margin: 40px 0 20px 0;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.6em;
+            margin: 30px 0 15px 0;
+            color: #34495e;
+        }
+        
+        p {
+            margin-bottom: 1.2em; /* Added for better paragraph spacing */
+        }
+        ul {
+            list-style-position: inside;
+            padding-left: 10px;
+        }
+        li {
+            margin-bottom: 0.8em;
+        }
+
+        /* --- Section Styling --- */
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #3498db;
+        }
+
+        .danger-section {
+            background: #fff5f5;
+            border-left: 5px solid #e74c3c;
+        }
+
+        .success-section {
+            background: #f0fff4;
+            border-left: 5px solid #27ae60;
+        }
+        
+        /* --- List Item Styling --- */
+        .list-item {
+            display: flex; /* Added flex for icon alignment */
+            align-items: flex-start; /* Aligned to top for multi-line content */
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .list-item i { /* Style for icons */
+            margin-right: 15px;
+            margin-top: 5px;
+            font-size: 1.5em;
+        }
+        
+        .list-item.negative {
+            border-left-color: #e74c3c;
+        }
+        .list-item.negative i { color: #e74c3c; }
+
+        .list-item.positive {
+            border-left-color: #27ae60;
+        }
+        .list-item.positive i { color: #27ae60; }
+
+
+        /* --- Pricing & CTA --- */
+        .price-box {
+            background: #ffffff;
+            padding: 25px 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px solid #27ae60;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .original-price {
+            font-size: 1.5em;
+            text-decoration: line-through;
+            opacity: 0.6;
+            margin-bottom: 20px;
+        }
+
+        .investment-display {
+            color: #27ae60;
+            font-weight: 700;
+            line-height: 1.1;
+            font-size: 3.2em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .investment-price {
+            color: #27ae60;
+            font-size: 6.5em;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .cta-button {
+            background: #f85243;
+            color: white;
+            padding: 20px 30px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 15px rgba(248, 82, 67, 0.4);
+            text-align: center;
+            line-height: 1.4;
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(248, 82, 67, 0.6);
+        }
+        
+        .cta-button span {
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 40px;
+            background: #2c3e50;
+            color: white;
+            margin: 40px 0;
+            border-radius: 15px;
+        }
+        
+        .cta-section h2 {
+            color: white;
+        }
+
+        /* --- Guarantee --- */
+        .guarantee {
+            background: #f0fff4;
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px dashed #27ae60;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .guarantee-icon {
+            font-size: 4em;
+            color: #27ae60;
+            margin-bottom: 15px;
+        }
+
+        /* --- Testimonials --- */
+        .testimonial {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #f39c12;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+        }
+        .testimonial-header { /* New class for image and author */
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .testimonial-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #ccc;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        .testimonial-author {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        /* --- Bonus Box --- */
+        .bonus-box {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(243, 156, 18, 0.3);
+        }
+        .bonus-box h3 { color: white; }
+        .bonus-box ul, .bonus-box li { color: white; }
+
+        /* --- Value Stack Table --- */
+        .value-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .value-table th, .value-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .value-table th {
+            background: #34495e;
+            color: white;
+        }
+        
+        .value-table tr:last-child td {
+            border-bottom: none;
+            background: #e8f5e8;
+            color: #2c3e50;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .value-table tr:last-child td:last-child {
+             color: #27ae60;
+        }
+        
+        .urgency-text {
+            color: #e74c3c;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
+
+        /* --- Final CTA --- */
+        .final-cta {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 40px 0 0 0; /* Removed bottom margin */
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(231,76,60,0.3);
+        }
+
+        .final-cta h2 {
+            color: white;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .final-cta .cta-button {
+            background: white;
+            color: #e74c3c;
+            font-size: 1.5em;
+            padding: 25px 50px;
+            margin: 30px 0;
+            animation: pulse 2s infinite;
+        }
+        
+        .final-cta .cta-button:hover {
+             box-shadow: 0 8px 25px rgba(255,255,255,0.4);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- Trust Badges & Path Comparison --- */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0 0 0;
+        }
+
+        .trust-badge {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        .path-comparison {
+            display: flex;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .path {
+            flex: 1;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .path-1 {
+            background: #fff5f5;
+            border: 2px solid #e74c3c;
+        }
+
+        .path-2 {
+            background: #f0fff4;
+            border: 2px solid #27ae60;
+        }
+        .path h3 { text-align: center; }
+
+        /* --- Media Queries for Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.8em; }
+            .path-comparison { flex-direction: column; }
+            .scarcity-bar { font-size: 13px; padding: 10px 5px; }
+            .timer { font-size: 18px; }
+            .testimonial-header { flex-direction: column; text-align: center; }
+            .testimonial-img { margin-right: 0; margin-bottom: 10px; }
+            .final-cta .cta-button { font-size: 1.2em; padding: 20px 40px; }
+            .investment-display { font-size: 2.5em; }
+            .investment-price { font-size: 5em; }
+        }
+    </style>
+    <script>
+        // --- Enhanced Countdown Timer with localStorage ---
+        function startCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            const timerKey = 'specialOfferTimerEnd';
+            const durationInSeconds = 48 * 3600; // 48 Hours
+
+            let endTime = localStorage.getItem(timerKey);
+
+            if (!endTime || new Date().getTime() > endTime) {
+                // Set a new end time if it doesn't exist or has expired
+                endTime = new Date().getTime() + durationInSeconds * 1000;
+                localStorage.setItem(timerKey, endTime);
+            }
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+
+                if (distance <= 0) {
+                    countdownElement.textContent = "00:00:00";
+                    clearInterval(timerInterval);
+                    return;
+                }
+
+                const hours = Math.floor(distance / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                countdownElement.textContent = 
+                    `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+            
+            updateTimer(); // Run immediately
+            const timerInterval = setInterval(updateTimer, 1000); // Update every second
+        }
+
+        window.addEventListener('load', startCountdown);
+    </script>
+</head>
+<body>
+    <div class="scarcity-bar">
+        ⚠️ LIMITED TIME: Special Pricing Ends In 
+        <div class="timer" id="countdown">47:59:59</div>
+        Only 23 Spots Remaining at This Price!
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="warning-badge">WARNING: This Isn't For Everyone</div>
+            <h1>STOP: Before You Waste Another Day Living Someone Else's Life</h1>
+            <p>If you're perfectly content drifting through life without direction, close this page now. This transformational course is ONLY for young adults who are sick of feeling lost and ready to discover their true purpose - even if it means confronting uncomfortable truths about themselves.</p>
+        </div>
+
+        <div class="section danger-section">
+            <h2>The Brutal Reality Nobody Talks About</h2>
+            <h3>You're Living Through The Most Psychologically Dangerous Period of Your Life</h3>
+            <p>Right now, at 17-27 years old, you're trapped in what psychologists call the "quarter-life crisis" - and it's silently destroying your potential every single day.</p>
+            <p><strong>Here's what's happening inside your mind:</strong></p>
+            <div class="list-item negative">
+                <i class="fa-solid fa-cloud-bolt"></i>
+                <div><strong>That gnawing anxiety when you wake up?</strong> It's your authentic self screaming to be heard</div>
+            </div>
+            <div class="list-item negative">
+                <i class="fa-solid fa-cloud-bolt"></i>
+                <div><strong>The comparison trap scrolling social media?</strong> It's because you know you're not living YOUR life</div>
+            </div>
+            <div class="list-item negative">
+                <i class="fa-solid fa-cloud-bolt"></i>
+                <div><strong>The paralysis when making decisions?</strong> It's because you're using someone else's compass</div>
+            </div>
+        </div>
+
+        <div class="section danger-section">
+            <h3>The Cost of Staying Lost (This Will Shock You)</h3>
+            <p>Every month you remain unclear about your purpose, you lose:</p>
+            <div class="list-item negative"><i class="fa-solid fa-sack-xmark"></i><div><strong>$3,000-5,000</strong> in potential income from not pursuing your true calling</div></div>
+            <div class="list-item negative"><i class="fa-solid fa-sack-xmark"></i><div><strong>720 hours</strong> of time you'll never get back</div></div>
+            <div class="list-item negative"><i class="fa-solid fa-sack-xmark"></i><div><strong>Countless opportunities</strong> that align with your authentic self</div></div>
+            <div class="list-item negative"><i class="fa-solid fa-sack-xmark"></i><div><strong>Your 20s</strong> - the most crucial decade for setting life direction</div></div>
+            <p class="urgency-text">The math is terrifying: If you stay lost for just one more year, you'll lose $36,000+ in potential and 8,760 hours of your irreplaceable youth.</p>
+        </div>
+
+        <div class="section">
+            <h2>Why 93% of People Never Find Their Purpose (And How You Can Be Different)</h2>
+            <h3>The Biggest Lie You've Been Told</h3>
+            <p>Society has convinced you that finding your purpose requires:</p>
+            <div class="list-item negative"><i class="fa-solid fa-circle-xmark"></i><div>Expensive soul-searching trips</div></div>
+            <div class="list-item negative"><i class="fa-solid fa-circle-xmark"></i><div>Years of therapy</div></div>
+            <div class="list-item negative"><i class="fa-solid fa-circle-xmark"></i><div>Trying 20 different careers</div></div>
+            <div class="list-item negative"><i class="fa-solid fa-circle-xmark"></i><div>Waiting for a magical "eureka" moment</div></div>
+            <p><strong>This is complete BS.</strong></p>
+            <h3>The Revolutionary Truth</h3>
+            <p>Your purpose isn't hiding somewhere "out there" - it's been screaming at you through your story all along. The problem? You've been trained to ignore it.</p>
+        </div>
+
+        <div class="section success-section">
+            <h2>Introducing: "Uncover Your Why Through Your Story"</h2>
+            <h3>The Only System That Finds Your Purpose Where It Actually Lives - In Your Own Experience</h3>
+            <p>This isn't another "follow your passion" course. This is a forensic investigation into your own life to extract the purpose that's been there all along.</p>
+            <h3>Why This Works When Everything Else Fails</h3>
+            <div class="list-item positive"><i class="fa-solid fa-lightbulb"></i><div><strong>Traditional Methods:</strong> Look outside yourself for answers<br><strong>Our Method:</strong> Archaeological dig through your existing story</div></div>
+            <div class="list-item positive"><i class="fa-solid fa-lightbulb"></i><div><strong>Traditional Methods:</strong> Generic advice that fits everyone<br><strong>Our Method:</strong> Hyper-personalized to YOUR unique experience</div></div>
+            <div class="list-item positive"><i class="fa-solid fa-lightbulb"></i><div><strong>Traditional Methods:</strong> Takes years of trial and error<br><strong>Our Method:</strong> Crystal clarity in 30 days or less</div></div>
+        </div>
+
+        <div class="section">
+            <h2>The 10-Video Transformation System</h2>
+            <h3>Each Video Unlocks Another Layer of Your Hidden Purpose</h3>
+            <h3>Phase 1: Demolition (Videos 1-3)</h3>
+            <div class="list-item">
+                <i class="fa-solid fa-hammer"></i>
+                <div>
+                    <strong>Video 1: "The Story You Tell Yourself"</strong>
+                    <ul><li>Destroy the false identity you've been programmed to live</li><li>Separate who you REALLY are from who you think you should be</li><li><strong>Breakthrough moment:</strong> You'll literally feel the weight lift off your shoulders</li></ul>
+                </div>
+            </div>
+            <div class="list-item">
+                <i class="fa-solid fa-hammer"></i>
+                <div>
+                    <strong>Video 2: "Your Foundation Blueprint"</strong>
+                    <ul><li>Discover how your childhood experiences created your unique "Purpose DNA"</li><li>Understand why certain things matter to you more than others</li><li><strong>Breakthrough moment:</strong> Your preferences finally make sense</li></ul>
+                </div>
+            </div>
+            <div class="list-item">
+                <i class="fa-solid fa-hammer"></i>
+                <div>
+                    <strong>Video 3: "The Moments That Made You"</strong>
+                    <ul><li>Identify the pivotal experiences that revealed your authentic self</li><li>Connect the dots between your past and your calling</li><li><strong>Breakthrough moment:</strong> You'll see the pattern that was always there</li></ul>
+                </div>
+            </div>
+            <h3>Phase 2: Excavation (Videos 4-6)</h3>
+            <div class="list-item">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <div>
+                    <strong>Video 4: "Your Natural Gifts Decoder"</strong>
+                    <ul><li>Uncover abilities so natural to you, you don't even notice them</li><li>Learn why what's easy for you is hard for others (and valuable)</li><li><strong>Breakthrough moment:</strong> You'll realize you've been sitting on gold</li></ul>
+                </div>
+            </div>
+            <div class="list-item">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <div>
+                    <strong>Video 5: "Your Values Archaeology"</strong>
+                    <ul><li>Dig beneath surface values to find your core drivers</li><li>Understand what truly matters to you (not what you think should)</li><li><strong>Breakthrough moment:</strong> Decision-making becomes crystal clear</li></ul>
+                </div>
+            </div>
+            <div class="list-item">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <div>
+                    <strong>Video 6: "The Pattern Recognition System"</strong>
+                    <ul><li>See the recurring themes that reveal your life's calling</li><li>Connect seemingly unrelated experiences into one coherent story</li><li><strong>Breakthrough moment:</strong> Your purpose emerges from the chaos</li></ul>
+                </div>
+            </div>
+            <h3>Phase 3: Construction (Videos 7-10)</h3>
+            <div class="list-item">
+                <i class="fa-solid fa-compass-drafting"></i>
+                <div>
+                    <strong>Video 7: "Your Unique Contribution Code"</strong>
+                    <ul><li>Define exactly how you're meant to add value to the world</li><li>Understand your irreplaceable role in the human story</li><li><strong>Breakthrough moment:</strong> You'll feel the power of your uniqueness</li></ul>
+                </div>
+            </div>
+            <div class="list-item">
+                <i class="fa-solid fa-compass-drafting"></i>
+                <div>
+                    <strong>Video 8: "The Future You Wants to Meet"</strong>
+                    <ul><li>Create a compelling vision based on your authentic self</li><li>Build excitement for your purpose-driven future</li><li><strong>Breakthrough moment:</strong> You'll feel pulled toward your destiny</li></ul>
+                </div>
+            </div>
+            <div class="list-item">
+                <i class="fa-solid fa-compass-drafting"></i>
+                <div>
+                    <strong>Video 9: "Your Purpose Statement Workshop"</strong>
+                    <ul><li>Craft your personal mission statement in one clear sentence</li><li>Create your North Star for all future decisions</li><li><strong>Breakthrough moment:</strong> You'll never feel directionless again</li></ul>
+                </div>
+            </div>
+            <div class="list-item">
+                <i class="fa-solid fa-compass-drafting"></i>
+                <div>
+                    <strong>Video 10: "Your Next Chapter Action Plan"</strong>
+                    <ul><li>Transform insights into immediate action steps</li><li>Create your 90-day roadmap to purpose-driven living</li><li><strong>Breakthrough moment:</strong> You'll know exactly what to do next</li></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>EXCLUSIVE: The "Quarter-Life Crisis Escape Kit" Bonuses</h2>
+            <h3>These Alone Are Worth More Than The Entire Course Price</h3>
+            <div class="bonus-box">
+                <h3>🎁 BONUS #1: The Crisis Survival Arsenal (Valued at $147)</h3>
+                <ul><li>Emergency Mindset Reset Audio - Instant relief when overwhelm hits</li><li>Comparison Trap Neutralizer - Break free from social media poison</li><li>Decision Paralysis Breakthrough System - Make confident choices in minutes</li><li>Anxiety-to-Action Converter - Transform worry into productive energy</li><li>30-Day Crisis-to-Clarity Journal - Daily exercises to maintain momentum</li></ul>
+            </div>
+            <div class="bonus-box">
+                <h3>🎁 BONUS #2: The Purpose-Driven Career Launcher (Valued at $197)</h3>
+                <ul><li>Career Pivot Playbook - Step-by-step transition guide</li><li>15 Purpose-Aligned Income Streams - Monetize your authentic gifts</li><li>Network Magnetism System - Attract opportunities aligned with your purpose</li><li>Resume Revolution Templates - Stand out by being authentic</li><li>Purpose-Driven Interview Mastery - Land roles that fuel your soul</li></ul>
+            </div>
+            <div class="bonus-box">
+                <h3>🎁 BONUS #3: The "Failure-Proof" Implementation System (Valued at $97)</h3>
+                <ul><li>The Procrastination Killer Protocol - Overcome resistance instantly</li><li>Momentum Maintenance Method - Keep moving when motivation fades</li><li>Support Network Architect - Build your purpose-driven community</li><li>Progress Tracking Dashboard - Measure your transformation</li><li>Emergency Motivation Injection - Get back on track when you stumble</li></ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>The Social Proof That Silences Skeptics</h2>
+            <h3>789 Young Adults Have Already Transformed Their Lives</h3>
+            <p><strong>The Numbers Don't Lie:</strong></p>
+            <div class="list-item positive"><i class="fa-solid fa-chart-line"></i><div>91% report crystal-clear direction within 30 days</div></div>
+            <div class="list-item positive"><i class="fa-solid fa-chart-line"></i><div>96% make major life changes within 90 days</div></div>
+            <div class="list-item positive"><i class="fa-solid fa-chart-line"></i><div>98% would recommend to other lost young adults</div></div>
+            <div class="list-item positive"><i class="fa-solid fa-chart-line"></i><div>$2.3M+ in additional income generated by graduates in first year</div></div>
+            <h3>Real Stories, Real Results</h3>
+            <div class="testimonial">
+                <blockquote>"I was 24 and completely lost after graduation. This course didn't just help me find my purpose - it showed me it was there all along. Within 2 months, I pivoted my career and started a nonprofit that's now helping hundreds of kids. I finally feel like I'm living MY life, not the one everyone expected me to live."</blockquote>
+                <div class="testimonial-header">
+                    <img src="https://via.placeholder.com/60" alt="Sarah M." class="testimonial-img">
+                    <div class="testimonial-author">- Sarah M., Social Entrepreneur</div>
+                </div>
+            </div>
+            <div class="testimonial">
+                <blockquote>"I wish I had this course when I was 22 instead of wasting 3 years in a career that drained my soul. The exercises are incredibly deep - they forced me to confront truths about myself I'd been avoiding. Now I'm building a business around my actual gifts, not what I thought I should be good at."</blockquote>
+                <div class="testimonial-header">
+                    <img src="https://via.placeholder.com/60" alt="Michael T." class="testimonial-img">
+                    <div class="testimonial-author">- Michael T., Creative Director</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="guarantee">
+            <div class="guarantee-icon"><i class="fa-solid fa-shield-heart"></i></div>
+            <h2>The "Impossible" Guarantee That Proves This Works</h2>
+            <h3>🛡️ The "Life-Changing Clarity" Promise</h3>
+            <p>Here's my bulletproof guarantee: Complete this course and if you don't have crystal-clear direction about your life purpose within 30 days, I'll refund every single dollar - no questions asked, no hoops to jump through.</p>
+            <p><strong>But here's the kicker:</strong> In 3+ years of offering this course, our refund rate is less than 2%. Why? Because this system works when nothing else does.</p>
+            <p>I'm so confident this will transform your life that I'm willing to take all the risk.</p>
+        </div>
+
+        <div class="section danger-section">
+            <h2>CRITICAL: The Scarcity Factor</h2>
+            <h3>Why This Opportunity Won't Last</h3>
+            <p><strong>The Uncomfortable Truth:</strong> I can only work with a limited number of people at this price point. Here's why:</p>
+            <div class="list-item negative"><i class="fa-solid fa-user-group"></i><div><strong>Personal Attention Limit</strong> - I personally review select student submissions</div></div>
+            <div class="list-item negative"><i class="fa-solid fa-user-group"></i><div><strong>Community Quality Control</strong> - Too many students dilutes the experience</div></div>
+            <div class="list-item negative"><i class="fa-solid fa-user-group"></i><div><strong>Pricing Strategy</strong> - This intro price is designed to build case studies</div></div>
+            <p class="urgency-text">FACT: Next month, this course will be priced at $297 (its true value). You're seeing this today because you're in the first wave of students.</p>
+        </div>
+
+        <div class="section">
+            <h2>The Investment Breakdown (This Will Surprise You)</h2>
+            <h3>What You're Really Getting:</h3>
+            <table class="value-table">
+                <tr><th>Component</th><th>Individual Value</th></tr>
+                <tr><td>10-Video Transformation System</td><td>$197</td></tr>
+                <tr><td>Crisis Survival Arsenal</td><td>$147</td></tr>
+                <tr><td>Purpose-Driven Career Launcher</td><td>$197</td></tr>
+                <tr><td>Failure-Proof Implementation System</td><td>$97</td></tr>
+                <tr><td>TOTAL VALUE</td><td>$638</td></tr>
+            </table>
+            <div class="price-box">
+                <div class="original-price">Regular Price: $638</div>
+                <div class="investment-display">
+                    Your<br>Investment<br>Today:
+                </div>
+                <div class="investment-price">$97</div>
+                <a href="https://triumphmethod.gumroad.com/l/seofle?wanted=true" class="cta-button">
+                    Save 92%<br><span>- Limited Time Only!</span>
+                </a>
+                <p>That's less than what most people waste on coffee in a month.</p>
+                <p><strong>But here's the real calculation:</strong></p>
+                <div class="list-item positive"><i class="fa-solid fa-arrow-trend-up"></i><div>Average salary increase from finding your purpose: $15,000/year</div></div>
+                <div class="list-item positive"><i class="fa-solid fa-arrow-trend-up"></i><div>Time saved from not wandering aimlessly: 2+ years</div></div>
+                <div class="list-item positive"><i class="fa-solid fa-arrow-trend-up"></i><div>Confidence gained from authentic living: Priceless</div></div>
+                <p class="urgency-text">ROI: This course pays for itself within the first week of purpose-driven living.</p>
+            </div>
+        </div>
+
+        <div class="section danger-section">
+            <h2>DEADLINE: This Pricing Expires in 48 Hours</h2>
+            <h3>⚠️ WARNING: The Price Increases Permanently Soon</h3>
+            <p><strong>Why the urgency?</strong></p>
+            <div class="list-item negative"><i class="fa-solid fa-circle-exclamation"></i><div>Limited beta pricing for the first 100 students only</div></div>
+            <div class="list-item negative"><i class="fa-solid fa-circle-exclamation"></i><div>Case study building - I need success stories at this price</div></div>
+            <div class="list-item negative"><i class="fa-solid fa-circle-exclamation"></i><div>Market positioning - This will be a premium course moving forward</div></div>
+            <p class="urgency-text">The question isn't whether you can afford $97. The question is: Can you afford to stay lost?</p>
+        </div>
+
+        <div class="section">
+            <h2>The Moment of Truth: Two Paths Diverge</h2>
+            <div class="path-comparison">
+                <div class="path path-1">
+                    <h3>Path 1: Keep Drifting</h3>
+                    <ul><li>Wake up tomorrow with the same gnawing anxiety</li><li>Spend another month comparing yourself to others</li><li>Watch opportunities pass by while you're paralyzed</li><li>Reach 30 wondering where your twenties went</li><li>Settle for someone else's definition of success</li></ul>
+                </div>
+                <div class="path path-2">
+                    <h3>Path 2: Discover Your Purpose</h3>
+                    <ul><li>Wake up tomorrow with direction and excitement</li><li>Make decisions aligned with your authentic self</li><li>Attract opportunities that fuel your soul</li><li>Reach 30 knowing you're living YOUR life</li><li>Build a legacy that matters to you</li></ul>
+                </div>
+            </div>
+            <p class="urgency-text">The choice is yours. But you have to choose.</p>
+        </div>
+
+        <div class="section">
+            <h2>How to Secure Your Transformation</h2>
+            <div class="list-item positive"><i class="fa-solid fa-computer-mouse"></i><div><strong>Step 1:</strong> Click the button below</div></div>
+            <div class="list-item positive"><i class="fa-solid fa-credit-card"></i><div><strong>Step 2:</strong> Enter your payment information</div></div>
+            <div class="list-item positive"><i class="fa-solid fa-unlock-keyhole"></i><div><strong>Step 3:</strong> Get instant access to all materials</div></div>
+            <div class="list-item positive"><i class="fa-solid fa-play"></i><div><strong>Step 4:</strong> Complete Video 1 within 24 hours</div></div>
+            <div class="list-item positive"><i class="fa-solid fa-star"></i><div><strong>Step 5:</strong> Watch your life transform over the next 30 days</div></div>
+        </div>
+
+        <div class="final-cta">
+            <h2>⚡ TAKE ACTION NOW ⚡</h2>
+            <a href="https://triumphmethod.gumroad.com/l/seofle?wanted=true" class="cta-button">SECURE YOUR TRANSFORMATION FOR $97</a>
+            <div class="trust-badges">
+                <div class="trust-badge">✅ Instant Access</div>
+                <div class="trust-badge">🔒 Secure Payment</div>
+                <div class="trust-badge">🛡️ 30-Day Money-Back Guarantee</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
